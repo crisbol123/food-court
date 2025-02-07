@@ -24,7 +24,7 @@ public class DishUseCase implements IDishServicePort {
     @Override
     public void createDish(Dish dish) {
         if(iRestaurantPersistencePort.existsById(dish.getRestaurantId()) ){
-            iDishPersistencePort.createDish(dish);
+            iDishPersistencePort.createDish(dish); 
         }
         else{
             throw new InvalidRestaurantException("Restaurant with id " + dish.getRestaurantId() + " does not exist");
