@@ -16,16 +16,12 @@ private final IRestaurantPersistencePort restaurantPersistencePort;
 private final IDishEntityMapper dishEntityMapper;
 private final IDishRepository dishRepository;
     @Override
-    public void createDish(Dish dish) {
+    public void saveDish(Dish dish) {
         DishEntity dishEntity = dishEntityMapper.toEntity(dish);
         dishEntity.setRestaurant(restaurantPersistencePort.findById(dish.getRestaurantId()));
         dishRepository.save(dishEntity);
     }
-    @Override
-    public void updateDish(Dish dish) {
-        DishEntity dishEntity = dishEntityMapper.toEntity(dish);
-        dishRepository.save(dishEntity);
-    }
+
 
     @Override
     public Optional<Dish> findById(Long id) {

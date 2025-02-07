@@ -18,6 +18,11 @@ public class DIshRestController {
     public void createDish(@RequestBody DishRequestDTO request) {
 dishServicePort.createDish( dishRequestMapper.toDomain(request)) ;
     }
+    @PutMapping("enable-disable/{id}")
+public void enableDisableDish(@PathVariable Long id) {
+dishServicePort.enableDisableDish(id);
+    }
+
     @PutMapping("/update/{id}")
     public void updateDish(@PathVariable Long id, @RequestBody UpdateDishRequestDTO request) {
   Dish dish = new Dish();

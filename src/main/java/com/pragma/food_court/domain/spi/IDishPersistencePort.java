@@ -6,9 +6,8 @@ import java.util.Optional;
 
 public interface IDishPersistencePort {
 
-    void createDish(Dish dish);
+    void saveDish(Dish dish);
 
-    void updateDish(Dish dish);
 
     Optional<Dish> findById(Long id);
 }

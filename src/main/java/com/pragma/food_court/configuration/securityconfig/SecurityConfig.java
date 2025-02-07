@@ -35,6 +35,8 @@ public class SecurityConfig {
                                 .requestMatchers("/swagger-ui.html").permitAll()
                                 .requestMatchers("/restaurant/save").hasRole(ADMIN_ROLE)
                                 .requestMatchers("/dish/create").hasRole(OWNER_ROLE)
+                                .requestMatchers("/dish/update/**").hasRole(OWNER_ROLE)
+                                .requestMatchers("/dish/enable-disable/**").hasRole(OWNER_ROLE)
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager ->
