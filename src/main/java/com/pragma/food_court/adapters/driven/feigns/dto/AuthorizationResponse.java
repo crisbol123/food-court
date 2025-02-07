@@ -13,7 +13,7 @@ import lombok.Setter;
 public class AuthorizationResponse
 {
     private boolean isPresent;
-    private String email;
+    private Long id;
     private String role;
 
 }

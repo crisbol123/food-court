@@ -1,6 +1,6 @@
 package com.pragma.food_court.adapters.driving.http.controller;
 
-import com.pragma.food_court.adapters.driving.http.dto.restaurant.request.RestaurantRequestDTO;
+import com.pragma.food_court.adapters.driving.http.dto.request.RestaurantRequestDTO;
 import com.pragma.food_court.adapters.driving.http.mapper.restaurant.IRestaurantRequestMapper;
 import com.pragma.food_court.domain.api.IRestaurantServicePort;
 import lombok.RequiredArgsConstructor;

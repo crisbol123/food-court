@@ -34,6 +34,7 @@ public class SecurityConfig {
                                 .requestMatchers("/webjars/**").permitAll()
                                 .requestMatchers("/swagger-ui.html").permitAll()
                                 .requestMatchers("/restaurant/save").hasRole(ADMIN_ROLE)
+                                .requestMatchers("/dish/create").hasRole(OWNER_ROLE)
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager ->

@@ -7,7 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class FoodCourtApplicationTests {
 
 	@Test
-	void contextLoads() {//TODO: Implement this test
+	void contextLoads() {
 	}
 
 }

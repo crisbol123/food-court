@@ -6,6 +6,7 @@ import com.pragma.food_court.adapters.driven.jpa.mysql.exception.ElementNotFound
 import com.pragma.food_court.adapters.driven.jpa.mysql.exception.NoDataFoundException;
 import com.pragma.food_court.configuration.Constants;
 import com.pragma.food_court.domain.exception.InvalidOwnerException;
+import com.pragma.food_court.domain.exception.InvalidRestaurantException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -20,6 +21,12 @@ import java.util.Map;
 
 @ControllerAdvice
 public class ControllerAdvisor {
+
+    @ExceptionHandler(InvalidRestaurantException.class)
+    public ResponseEntity<ExceptionResponse> handleInvalidRestaurantException( InvalidRestaurantException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+             exception.getMessage(), HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
+    }
 
 @ExceptionHandler(InvalidOwnerException.class)
     public ResponseEntity<ExceptionResponse> handleInvalidOwnerException() {
