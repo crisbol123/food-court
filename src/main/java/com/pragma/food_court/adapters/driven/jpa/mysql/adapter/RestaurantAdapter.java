@@ -5,8 +5,15 @@ import com.pragma.food_court.adapters.driven.jpa.mysql.mapper.IRestaurantEntityM
 import com.pragma.food_court.adapters.driven.jpa.mysql.repository.IRestaurantRepository;
 import com.pragma.food_court.domain.model.Restaurant;
 import com.pragma.food_court.domain.spi.IRestaurantPersistencePort;
+import com.pragma.food_court.domain.util.PagedResponse;
+import com.pragma.food_court.domain.util.RestaurantResponseGetAll;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -33,4 +40,21 @@ public class RestaurantAdapter implements IRestaurantPersistencePort {
     public Optional<Long> findOwnerIdByRestaurantId(Long id) {
         return restaurantRepository.findOwnerIdById(id);
     }
+
+    @Override
+    public PagedResponse<RestaurantResponseGetAll> getAllRestaurants(int page, int size, boolean ascOrder) {
+        Sort sort = ascOrder ? Sort.by("name").ascending() : Sort.by("name").descending();
+        Pageable pagination = PageRequest.of(page, size, sort);
+        Page<RestaurantEntity> restaurantPage = restaurantRepository.findAll(pagination);
+        List<RestaurantEntity> restaurantEntities = restaurantPage.getContent();
+
+        List<RestaurantResponseGetAll> restaurants = restaurantEntities.stream()
+                .map(restaurantEntity -> new RestaurantResponseGetAll(restaurantEntity.getName(), restaurantEntity.getLogoUrl())
+                ).toList();
+long totalItems = restaurantPage.getTotalElements();
+        int totalPages = restaurantPage.getTotalPages();
+        return new PagedResponse<>(restaurants, page, totalPages,totalItems,restaurantPage.isLast());
+    }
+
+
 }
