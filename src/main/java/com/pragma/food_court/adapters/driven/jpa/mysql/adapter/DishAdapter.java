@@ -6,8 +6,13 @@ import com.pragma.food_court.adapters.driven.jpa.mysql.repository.IDishRepositor
 import com.pragma.food_court.domain.model.Dish;
 import com.pragma.food_court.domain.spi.IDishPersistencePort;
 import com.pragma.food_court.domain.spi.IRestaurantPersistencePort;
+import com.pragma.food_court.domain.util.PagedResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -28,5 +33,11 @@ private final IDishRepository dishRepository;
         return dishRepository.findById(id).map(dishEntityMapper::toDomain);
     }
 
+    @Override
+    public PagedResponse<Dish> getAllDishes(int page, int size, String category, long restaurantId) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<DishEntity> dishEntities = dishRepository.findByCategoryAndRestaurantId(category, restaurantId, pageable);
+        List<Dish> dishes = dishEntityMapper.toDomainList(dishEntities.getContent());
 
-}
+        return new PagedResponse<>(dishes, page, dishEntities.getTotalPages(), dishEntities.getTotalElements(), dishEntities.isLast() );
+} }

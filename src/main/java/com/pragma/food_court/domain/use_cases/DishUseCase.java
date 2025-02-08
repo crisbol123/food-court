@@ -1,5 +1,6 @@
 package com.pragma.food_court.domain.use_cases;
 
+import com.pragma.food_court.adapters.driving.http.dto.response.DishResponse;
 import com.pragma.food_court.domain.api.IDishServicePort;
 import com.pragma.food_court.domain.exception.InvalidDishException;
 import com.pragma.food_court.domain.exception.InvalidOwnerException;
@@ -8,6 +9,7 @@ import com.pragma.food_court.domain.model.Dish;
 import com.pragma.food_court.domain.spi.IDishPersistencePort;
 import com.pragma.food_court.domain.spi.IRestaurantPersistencePort;
 import com.pragma.food_court.domain.spi.ISecurityContextPort;
+import com.pragma.food_court.domain.util.PagedResponse;
 
 import java.util.Optional;
 
@@ -43,6 +45,12 @@ public class DishUseCase implements IDishServicePort {
         Dish dishToUpdate = validateDishAndOwnership(id);
         dishToUpdate.setActive(!dishToUpdate.isActive());
         iDishPersistencePort.saveDish(dishToUpdate);
+    }
+
+    @Override
+    public PagedResponse<Dish> getAllDishes(int page, int size, String category, long restaurantId) {
+
+        return iDishPersistencePort.getAllDishes(page, size, category, restaurantId);
     }
 
     private Dish validateDishAndOwnership(Long dishId) {

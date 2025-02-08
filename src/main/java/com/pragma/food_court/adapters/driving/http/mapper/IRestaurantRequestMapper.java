@@ -1,4 +1,4 @@
-package com.pragma.food_court.adapters.driving.http.mapper.restaurant;
+package com.pragma.food_court.adapters.driving.http.mapper;
 
 
 import com.pragma.food_court.adapters.driving.http.dto.request.RestaurantRequestDTO;

@@ -2,7 +2,7 @@ package com.pragma.food_court.adapters.driving.http.controller;
 
 import com.pragma.food_court.adapters.driving.http.dto.request.RestaurantRequestDTO;
 import com.pragma.food_court.domain.util.RestaurantResponseGetAll;
-import com.pragma.food_court.adapters.driving.http.mapper.restaurant.IRestaurantRequestMapper;
+import com.pragma.food_court.adapters.driving.http.mapper.IRestaurantRequestMapper;
 import com.pragma.food_court.domain.api.IRestaurantServicePort;
 import com.pragma.food_court.domain.util.PagedResponse;
 import lombok.RequiredArgsConstructor;
