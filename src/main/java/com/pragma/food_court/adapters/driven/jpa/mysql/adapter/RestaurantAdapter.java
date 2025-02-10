@@ -1,7 +1,9 @@
 package com.pragma.food_court.adapters.driven.jpa.mysql.adapter;
 
+import com.pragma.food_court.adapters.driven.jpa.mysql.entity.EmployeeRestaurantEntity;
 import com.pragma.food_court.adapters.driven.jpa.mysql.entity.RestaurantEntity;
 import com.pragma.food_court.adapters.driven.jpa.mysql.mapper.IRestaurantEntityMapper;
+import com.pragma.food_court.adapters.driven.jpa.mysql.repository.IEmployeeRestaurantRepository;
 import com.pragma.food_court.adapters.driven.jpa.mysql.repository.IRestaurantRepository;
 import com.pragma.food_court.domain.model.Restaurant;
 import com.pragma.food_court.domain.spi.IRestaurantPersistencePort;
@@ -20,6 +22,7 @@ import java.util.Optional;
 public class RestaurantAdapter implements IRestaurantPersistencePort {
     private final IRestaurantRepository restaurantRepository;
     private final IRestaurantEntityMapper  restaurantEntityMapper;
+    private final IEmployeeRestaurantRepository employeeRestaurantRepository;
     @Override
     public void saveRestaurant(Restaurant restaurant) {
         restaurantRepository.save(restaurantEntityMapper.toEntity(restaurant));
@@ -54,6 +57,12 @@ public class RestaurantAdapter implements IRestaurantPersistencePort {
 long totalItems = restaurantPage.getTotalElements();
         int totalPages = restaurantPage.getTotalPages();
         return new PagedResponse<>(restaurants, page, totalPages,totalItems,restaurantPage.isLast());
+    }
+
+    @Override
+    public void createEmployee(long restaurantId, long employeeId) {
+        EmployeeRestaurantEntity employeeRestaurantEntity = new EmployeeRestaurantEntity( restaurantId, employeeId);
+        employeeRestaurantRepository.save(employeeRestaurantEntity);
     }
 
 

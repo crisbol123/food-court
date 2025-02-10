@@ -31,6 +31,11 @@ throw new InvalidOwnerException();
     public PagedResponse<RestaurantResponseGetAll> getAllRestaurants(int page, int size, boolean ascOrderByName) {
         return iRestaurantPersistencePort.getAllRestaurants(page, size, ascOrderByName);
     }
+
+    @Override
+    public void createEmployee(long restaurantId, long employeeId) {
+iRestaurantPersistencePort.createEmployee(restaurantId, employeeId);
+    }
 }
 
 

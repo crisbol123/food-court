@@ -39,6 +39,8 @@ public class SecurityConfig {
                                 .requestMatchers("/dish/update/**").hasRole(OWNER_ROLE)
                                 .requestMatchers("/dish/enable-disable/**").hasRole(OWNER_ROLE)
                                 .requestMatchers("/dish/get-all").hasAnyRole(OWNER_ROLE, ADMIN_ROLE, CUSTOMER_ROLE)
+                                .requestMatchers("restaurant/create-employee").hasRole(OWNER_ROLE)
+                                .requestMatchers("order/save").hasRole(CUSTOMER_ROLE)
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager ->

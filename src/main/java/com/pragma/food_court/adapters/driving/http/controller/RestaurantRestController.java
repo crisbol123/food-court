@@ -1,5 +1,6 @@
 package com.pragma.food_court.adapters.driving.http.controller;
 
+import com.pragma.food_court.adapters.driving.http.dto.request.NewEmployeeRequest;
 import com.pragma.food_court.adapters.driving.http.dto.request.RestaurantRequestDTO;
 import com.pragma.food_court.domain.util.RestaurantResponseGetAll;
 import com.pragma.food_court.adapters.driving.http.mapper.IRestaurantRequestMapper;
@@ -30,4 +31,11 @@ restaurantServicePort.saveRestaurant(restaurantRequestMapper.toDomain(request));
 
         return ResponseEntity.ok(restaurantServicePort.getAllRestaurants(page, size, ascOrderByName));
     }
+    @PostMapping("create-employee")
+    public void createEmployee(@RequestBody NewEmployeeRequest request) {
+        long restaurantId = request.getRestaurantId();
+        long employeeId = request.getEmployeeId();
+restaurantServicePort.createEmployee(restaurantId, employeeId);
+    }
+
 }
