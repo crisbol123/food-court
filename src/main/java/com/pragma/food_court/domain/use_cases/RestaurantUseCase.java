@@ -36,6 +36,11 @@ throw new InvalidOwnerException();
     public void createEmployee(long restaurantId, long employeeId) {
 iRestaurantPersistencePort.createEmployee(restaurantId, employeeId);
     }
+
+    @Override
+    public long getRestaurantIdByEmployeeId(long employeeId) {
+        return iRestaurantPersistencePort.getRestaurantIdByEmployeeId(employeeId);
+    }
 }
 
 

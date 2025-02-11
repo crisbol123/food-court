@@ -73,13 +73,14 @@ public IOrderPersistencePort orderPersistencePort() {
         return config.getAuthenticationManager();
     }
 
-@Bean
-public IRestaurantServicePort articleServicePort() {
-    return new RestaurantUseCase( userFeignClientPort(), restaurantPersistencePort());
-}
+
 @Bean
 public IOrderServicePort orderServicePort() {
-    return new OrderUseCase(orderPersistencePort(), securityContextPort(), traceabilityFeignClientPort());
+    return new OrderUseCase(orderPersistencePort(), securityContextPort(), traceabilityFeignClientPort(), restaurantServicePort());
+}
+@Bean
+public IRestaurantServicePort restaurantServicePort() {
+    return new RestaurantUseCase(userFeignClientPort(), restaurantPersistencePort());
 }
     @Bean
     public IDishPersistencePort dishPersistencePort() {

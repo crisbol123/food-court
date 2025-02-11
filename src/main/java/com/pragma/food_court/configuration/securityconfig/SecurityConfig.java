@@ -20,7 +20,7 @@ public class SecurityConfig {
     private static final String ADMIN_ROLE = "ADMIN";
     private static final String OWNER_ROLE = "OWNER";
     private static final String CUSTOMER_ROLE = "CUSTOMER";
-
+    private static final String EMPLOYEE_ROLE = "EMPLOYEE";
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
@@ -41,6 +41,8 @@ public class SecurityConfig {
                                 .requestMatchers("/dish/get-all").hasAnyRole(OWNER_ROLE, ADMIN_ROLE, CUSTOMER_ROLE)
                                 .requestMatchers("restaurant/create-employee").hasRole(OWNER_ROLE)
                                 .requestMatchers("order/save").hasRole(CUSTOMER_ROLE)
+                                .requestMatchers("order/getAllOrdersByClientId").hasRole(EMPLOYEE_ROLE)
+                                .requestMatchers("order/assignOrder").hasRole(EMPLOYEE_ROLE)
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManager ->

@@ -16,4 +16,5 @@ public interface IRestaurantPersistencePort {
     Optional<Long> findOwnerIdByRestaurantId(Long id);
     PagedResponse<RestaurantResponseGetAll> getAllRestaurants(int page, int size, boolean ascOrder);
     void createEmployee(long restaurantId, long employeeId);
+    Long getRestaurantIdByEmployeeId(Long employeeId);
 }

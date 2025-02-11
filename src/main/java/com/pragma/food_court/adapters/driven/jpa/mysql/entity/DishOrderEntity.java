@@ -1,5 +1,6 @@
 package com.pragma.food_court.adapters.driven.jpa.mysql.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,8 +16,9 @@ public class DishOrderEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = true)
+    @JsonIgnore
     private OrderEntity order;
 
     @Column(name = "dish_id", nullable = false)

@@ -8,4 +8,6 @@ import org.mapstruct.Mapper;
 public interface OrderEntityMapper {
 
     OrderEntity toEntity(Order order);
+
+    Order toDomain(OrderEntity orderEntity);
 }

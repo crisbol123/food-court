@@ -6,6 +6,7 @@ import com.pragma.food_court.adapters.driven.jpa.mysql.exception.ElementNotFound
 import com.pragma.food_court.adapters.driven.jpa.mysql.exception.NoDataFoundException;
 import com.pragma.food_court.configuration.Constants;
 import com.pragma.food_court.domain.exception.ClientHasAOrderException;
+import com.pragma.food_court.domain.exception.InvalidOrderException;
 import com.pragma.food_court.domain.exception.InvalidOwnerException;
 import com.pragma.food_court.domain.exception.InvalidRestaurantException;
 import org.springframework.http.HttpStatus;
@@ -64,11 +65,19 @@ public class ControllerAdvisor {
         });
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(ClientHasAOrderException.class)
     public ResponseEntity<ExceptionResponse> handleClientHasAOrderException(ClientHasAOrderException exception) {
         return ResponseEntity.badRequest().body(new ExceptionResponse(
                 exception.getMessage(), HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
+    @ExceptionHandler(InvalidOrderException.class)
+    public ResponseEntity<ExceptionResponse> handleInvalidOrderException(InvalidOrderException exception) {
+        return ResponseEntity.badRequest().body(new ExceptionResponse(
+                exception.getMessage(), HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
 
 
-}
+
+
+
+}}

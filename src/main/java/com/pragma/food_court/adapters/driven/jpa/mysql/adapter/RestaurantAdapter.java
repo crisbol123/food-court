@@ -61,8 +61,13 @@ long totalItems = restaurantPage.getTotalElements();
 
     @Override
     public void createEmployee(long restaurantId, long employeeId) {
-        EmployeeRestaurantEntity employeeRestaurantEntity = new EmployeeRestaurantEntity( restaurantId, employeeId);
+        EmployeeRestaurantEntity employeeRestaurantEntity = new EmployeeRestaurantEntity( employeeId, restaurantId);
         employeeRestaurantRepository.save(employeeRestaurantEntity);
+    }
+
+    @Override
+    public Long getRestaurantIdByEmployeeId(Long employeeId) {
+        return employeeRestaurantRepository.getRestaurantIdByEmployeeId(employeeId);
     }
 
 

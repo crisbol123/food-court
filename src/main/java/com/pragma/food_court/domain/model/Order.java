@@ -3,18 +3,28 @@ package com.pragma.food_court.domain.model;
 import java.util.List;
 
 public class Order {
+    private long id;
     private long restaurantId;
     private List<DishOrder> dishes;
     private long clientId;
     private long employeeId;
     private String state;
 
-    public Order(long restaurantId, List<DishOrder> dishes, long clientId, long employeeId, String state) {
+    public Order(long id, long restaurantId, List<DishOrder> dishes, long clientId, long employeeId, String state) {
+        this.id = id;
         this.restaurantId = restaurantId;
         this.dishes = dishes;
         this.clientId = clientId;
         this.employeeId = employeeId;
         this.state = state;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getState() {

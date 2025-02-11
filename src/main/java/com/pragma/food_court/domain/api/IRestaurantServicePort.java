@@ -9,4 +9,5 @@ public interface IRestaurantServicePort {
     void saveRestaurant( Restaurant restaurant);
     PagedResponse<RestaurantResponseGetAll> getAllRestaurants(int page, int size, boolean ascOrder);
     void createEmployee(long restaurantId, long employeeId);
+    long getRestaurantIdByEmployeeId(long employeeId);
 }

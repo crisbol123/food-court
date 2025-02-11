@@ -20,7 +20,7 @@ public class OrderEntity {
     @Column(name = "restaurant_id", nullable = false)
     private long restaurantId;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST ,CascadeType.REMOVE,CascadeType.REFRESH}, fetch = FetchType.LAZY )
     private List<DishOrderEntity> dishes;
 
     @Column(name = "client_id", nullable = false)
