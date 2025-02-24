@@ -5,4 +5,5 @@ public enum StateEnum {
     PREPARING,
     READY,
     DELIVERED,
+    CANCELED
 }

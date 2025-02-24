@@ -3,7 +3,7 @@ package com.pragma.food_court.domain.model;
 import java.util.List;
 
 public class Order {
-    private long id;
+    private Long id;
     private long restaurantId;
     private List<DishOrder> dishes;
     private long clientId;

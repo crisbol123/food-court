@@ -8,7 +8,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class UpdateDishRequestDTO {
-    private int price;
+    private Integer price;
     private String description;
 
 }

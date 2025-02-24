@@ -6,8 +6,10 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring", uses = {DishOrderEntityMapper.class})
 public interface OrderEntityMapper {
-
     OrderEntity toEntity(Order order);
 
     Order toDomain(OrderEntity orderEntity);
+
+
+
 }

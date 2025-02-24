@@ -10,4 +10,5 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface TraceabilityFeignClient {
     @PostMapping("/state/save")
     void saveState(@RequestBody StateDTO stateDTO);
+
 }

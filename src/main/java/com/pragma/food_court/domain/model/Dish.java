@@ -33,7 +33,6 @@ public Dish() {
         this.imageUrl = imageUrl;
         this.category = category;
         this.restaurantId = restaurantId;
-        this.active = true;
     }
 
     public Long getId() {

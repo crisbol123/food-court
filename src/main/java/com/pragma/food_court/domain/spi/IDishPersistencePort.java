@@ -1,6 +1,5 @@
 package com.pragma.food_court.domain.spi;
 
-import com.pragma.food_court.adapters.driving.http.dto.response.DishResponse;
 import com.pragma.food_court.domain.model.Dish;
 import com.pragma.food_court.domain.util.PagedResponse;
 

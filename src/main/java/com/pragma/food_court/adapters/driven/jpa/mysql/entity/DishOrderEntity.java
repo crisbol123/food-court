@@ -21,7 +21,7 @@ public class DishOrderEntity {
     @JsonIgnore
     private OrderEntity order;
 
-    @Column(name = "dish_id", nullable = false)
+    @Column(name = "dish_id", nullable = true)
     private Long dishId;
 
     @Column(name = "quantity", nullable = false)
