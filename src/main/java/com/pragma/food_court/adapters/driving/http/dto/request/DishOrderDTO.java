@@ -1,4 +1,4 @@
-package com.pragma.food_court.adapters.driven.feigns.dto;
+package com.pragma.food_court.adapters.driving.http.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,9 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AddStockRequest {
-    private Long idArticle;
+public  class DishOrderDTO {
+    private Long dishId;
+
     private int quantity;
-
-
 }

@@ -1,4 +1,4 @@
-package com.pragma.food_court.adapters.driving.http.dto.restaurant.request;
+package com.pragma.food_court.adapters.driving.http.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

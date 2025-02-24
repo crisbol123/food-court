@@ -49,12 +49,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if(!authorizationResponse.isPresent()) {
             throw new ElementNotFoundException(Constants.EMAIL);
         }else{
-            String email = authorizationResponse.getEmail();
             Collection<? extends GrantedAuthority> authorities = Set.of(new SimpleGrantedAuthority(authorizationResponse.getRole()));
 
 
             UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-                    email,
+                    authorizationResponse,
                     null,
                     authorities);
 
