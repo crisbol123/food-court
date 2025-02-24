@@ -1,6 +1,5 @@
 package com.pragma.food_court.domain.use_cases;
 
-import com.pragma.food_court.adapters.driving.http.dto.response.DishResponse;
 import com.pragma.food_court.domain.api.IDishServicePort;
 import com.pragma.food_court.domain.exception.InvalidDishException;
 import com.pragma.food_court.domain.exception.InvalidOwnerException;
@@ -26,17 +25,20 @@ public class DishUseCase implements IDishServicePort {
     }
     @Override
     public void createDish(Dish dish) {
+        dish.setActive(true);
         if(iRestaurantPersistencePort.existsById(dish.getRestaurantId()) ){
             iDishPersistencePort.saveDish(dish);
         }
         else{
-            throw new InvalidRestaurantException("Restaurant with id " + dish.getRestaurantId() + "does not exist");
+            throw new InvalidRestaurantException("Restaurant with id ${{dish.getRestaurantId()}} does not exist");
         }
     }
 
     @Override
     public void updateDish(Dish dish) {
         Dish dishToUpdate = validateDishAndOwnership(dish.getId());
+        dishToUpdate.setPrice(dish.getPrice());
+        dishToUpdate.setDescription(dish.getDescription());
             iDishPersistencePort.saveDish(dishToUpdate);
     }
 

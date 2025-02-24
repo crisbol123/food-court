@@ -4,7 +4,6 @@ import com.pragma.food_court.adapters.driving.http.dto.request.DishRequestDTO;
 import com.pragma.food_court.adapters.driving.http.dto.response.DishResponse;
 import com.pragma.food_court.domain.model.Dish;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 import java.util.List;
 

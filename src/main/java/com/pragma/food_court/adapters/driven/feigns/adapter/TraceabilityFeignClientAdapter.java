@@ -16,4 +16,6 @@ public class TraceabilityFeignClientAdapter implements ITraceabilityFeignClientP
         StateDTO stateDTO = new StateDTO(orderId, state);
         traceabilityFeignClient.saveState(stateDTO);
     }
+
+
 }

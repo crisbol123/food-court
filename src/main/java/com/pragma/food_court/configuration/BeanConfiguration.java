@@ -1,8 +1,10 @@
 package com.pragma.food_court.configuration;
 
 
+import com.pragma.food_court.adapters.driven.feigns.adapter.MessageFeignClientAdapter;
 import com.pragma.food_court.adapters.driven.feigns.adapter.TraceabilityFeignClientAdapter;
 import com.pragma.food_court.adapters.driven.feigns.adapter.UserFeignClientAdapter;
+import com.pragma.food_court.adapters.driven.feigns.clients.MessageFeignClient;
 import com.pragma.food_court.adapters.driven.feigns.clients.TraceabilityFeignClient;
 import com.pragma.food_court.adapters.driven.feigns.clients.UserFeignClient;
 import com.pragma.food_court.adapters.driven.jpa.mysql.adapter.DishAdapter;
@@ -43,10 +45,15 @@ public class BeanConfiguration {
    private final OrderRepository orderRepository;
 private final OrderEntityMapper orderEntityMapper;
 private final TraceabilityFeignClient traceabilityFeignClient;
+private final MessageFeignClient messageFeignClient;
 
 @Bean
 public ITraceabilityFeignClientPort traceabilityFeignClientPort() {
     return new TraceabilityFeignClientAdapter(traceabilityFeignClient);
+}
+@Bean
+public IMessageFeignClientPort messageFeignClientPort() {
+    return new MessageFeignClientAdapter(messageFeignClient);
 }
 
     @Bean
@@ -76,7 +83,7 @@ public IOrderPersistencePort orderPersistencePort() {
 
 @Bean
 public IOrderServicePort orderServicePort() {
-    return new OrderUseCase(orderPersistencePort(), securityContextPort(), traceabilityFeignClientPort(), restaurantServicePort());
+    return new OrderUseCase(orderPersistencePort(), securityContextPort(), traceabilityFeignClientPort(), restaurantServicePort(), messageFeignClientPort());
 }
 @Bean
 public IRestaurantServicePort restaurantServicePort() {
